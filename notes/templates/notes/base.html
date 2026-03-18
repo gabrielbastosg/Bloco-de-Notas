@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas Estudos</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+        <h1>Sistema de Notas</h1>
+
+        <nav class="user-nav">
+            {% if user.is_authenticated %}
+                <span>Olá, {{ user.username }}!</span>
+                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-create">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+
+            <!-- botão dark mode -->
+            <button id="toggle-dark" style="margin-left:10px;">🌙</button>
+        </nav>
+    </header>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p class="message">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+</div>
+
+<script>
+    const toggleBtn = document.getElementById("toggle-dark");
+
+    toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+            localStorage.setItem("darkMode", "on");
+            toggleBtn.textContent = "☀️";
+        } else {
+            localStorage.setItem("darkMode", "off");
+            toggleBtn.textContent = "🌙";
+        }
+    });
+
+    if (localStorage.getItem("darkMode") === "on") {
+        document.body.classList.add("dark-mode");
+        toggleBtn.textContent = "☀️";
+    }
+</script>
+
+</body>
+</html>

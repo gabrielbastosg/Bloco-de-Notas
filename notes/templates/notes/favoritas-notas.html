@@ -1,0 +1,58 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+
+<section class="notes-header">
+    <h2>Notas Favoritas</h2>
+
+    <form method="GET" class="search-form">
+        <input 
+            type="text" 
+            name="q" 
+            placeholder="Buscar notas favoritas..." 
+            value="{{ request.GET.q }}"
+            class="search-input"
+        >
+        <button type="submit" class="search-button">Buscar</button>
+
+        {% if request.GET.q %}
+            <a href="{% url 'favoritas-notas' %}" class="search-clear">Limpar</a>
+        {% endif %}
+    </form>
+
+    <div class="notes-actions">
+        <a href="{% url 'lista-notas' %}" class="btn-create">🔙 Todas as Notas</a>
+        <a href="{% url 'criar-notas' %}" class="btn-create">Criar Nova Nota</a>
+    </div>
+</section>
+
+<section class="notes-list">
+
+    {% for note in notes %}
+        <article class="note-card">
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.content }}</p>
+            <small>{{ note.created_at|date:"d/m/Y H:i" }}</small>
+
+            <a href="{% url 'favoritar-nota' note.id %}">
+                {% if note.is_favorite %}⭐{% else %}☆{% endif %}
+            </a>
+
+            <div class="note-actions">
+                <a href="{% url 'editar-nota' note.id %}" class="btn-edit">✏️ Editar</a>
+                <a href="{% url 'deletar-nota' note.id %}" 
+                   onclick="return confirm('Tem certeza que deseja deletar esta nota?')" 
+                   class="btn-delete">🗑 Deletar</a>
+            </div>
+        </article>
+    {% empty %}
+        {% if request.GET.q %}
+            <p>Nenhum resultado encontrado para "{{ request.GET.q }}"</p>
+        {% else %}
+            <p>Nenhuma nota favorita ainda.</p>
+        {% endif %}
+    {% endfor %}
+
+</section>
+
+{% endblock %}

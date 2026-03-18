@@ -1,0 +1,509 @@
+/* ========================== 
+   Reset & Layout Básico
+========================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================
+   Cabeçalhos
+========================== */
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+}
+
+/* ==========================
+   Mensagens
+========================== */
+.messages {
+    margin-bottom: 20px;
+}
+
+.message {
+    color: #2d3436;
+    padding: 12px 15px;
+    background: #dff9fb;
+    border: 1px solid #7ed6df;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* ==========================
+   Botões
+========================== */
+button, 
+.btn-create, 
+.btn-edit, 
+.btn-delete, 
+.btn-favorite, 
+.search-button, 
+.search-clear,
+.btn-back {
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+button:hover,
+.btn-create:hover,
+.btn-edit:hover,
+.btn-delete:hover,
+.btn-favorite:hover,
+.search-button:hover,
+.search-clear:hover,
+.btn-back:hover {
+    transform: translateY(-2px) scale(1.03);
+    opacity: 0.95;
+}
+
+/* Cores */
+.btn-create {
+    background-color: #1abc9c;
+    color: #fff;
+}
+
+.btn-edit {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.btn-favorite {
+    background-color: #f1c40f;
+    color: #2c3e50;
+}
+
+.search-button {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.search-clear {
+    background-color: #bdc3c7;
+    color: #2c3e50;
+}
+
+.btn-back {
+    background-color: #1abc9c;
+    color: #fff;
+    width: fit-content;
+}
+
+.btn-back::before {
+    content: none;
+}
+
+.btn-back:hover {
+    background-color: #16a085;
+}
+
+/* ==========================
+   Header
+========================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.user-nav span {
+    margin-right: 10px;
+}
+
+/* ==========================
+   Formulários
+========================== */
+.note-form-container, .login-box, .logout-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    margin-top: 20px;
+}
+
+.note-form input, 
+.note-form textarea,
+.login-box input[type="text"], 
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    border: 1px solid #dcdde1;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* ==========================
+   Cabeçalho de notas
+========================== */
+.notes-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 25px;
+    align-items: flex-start;
+}
+
+.notes-header h2 {
+    margin: 0;
+}
+
+/* Busca */
+.notes-header .search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    position: relative;
+}
+
+.search-input {
+    flex: 1;
+    height: 40px;
+    padding: 0 14px 0 32px;
+    border-radius: 8px;
+    border: 1px solid #dcdde1;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background: #f8f9fb;
+}
+
+.search-input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.15);
+    outline: none;
+    background: #ffffff;
+}
+
+/* Botões alinhados */
+.search-button,
+.search-clear {
+    height: 40px;
+}
+
+/* Ações */
+.notes-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Ícone 🔍 */
+.search-form::before {
+    content: "🔍";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ==========================
+   Lista de Notas
+========================== */
+.notes-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+/* Responsividade do grid */
+@media (max-width: 900px) {
+    .notes-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .notes-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.note-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transition: all 0.25s ease;
+    position: relative;
+
+    opacity: 0;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.note-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+}
+
+.note-card.favorite {
+    background: linear-gradient(135deg, #fffbea, #ffffff);
+    border: 1px solid #f9e79f;
+}
+
+.note-card.favorite::after {
+    content: "⭐";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 18px;
+}
+
+.note-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.note-card p {
+    flex: 1;
+    margin: 0 0 12px 0;
+    line-height: 1.6;
+    font-size: 14.5px;
+    color: #636e72;
+}
+
+.note-card small {
+    color: #95a5a6;
+    margin-bottom: 12px;
+}
+
+/* Ações */
+.note-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.note-card a {
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.note-card a:hover {
+    transform: translateY(-2px);
+}
+
+/* ==========================
+   Estado vazio
+========================== */
+.notes-list-empty {
+    text-align: center;
+    font-style: italic;
+    color: #7f8c8d;
+    padding: 30px 0;
+}
+
+/* ==========================
+   Responsividade geral
+========================== */
+@media (max-width: 800px) {
+    .notes-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .notes-header .search-form {
+        flex-direction: column;
+    }
+
+    .search-input, 
+    .search-button, 
+    .search-clear {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .note-card {
+        padding: 16px;
+    }
+}
+
+/* ==========================
+   Extras
+========================== */
+.btn-create::before {
+    content: "➕ ";
+}
+
+.btn-favorite::before {
+    content: "⭐ ";
+}
+
+/* ==========================
+   Animação
+========================== */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ==========================
+   🌙 DARK MODE
+========================== */
+body.dark-mode {
+    background-color: #181a1b;
+    color: #e4e6eb;
+}
+
+/* Container */
+body.dark-mode .container {
+    background: #242526;
+    box-shadow: none;
+}
+
+/* Cards */
+body.dark-mode .note-card {
+    background: #242526;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: none;
+}
+
+body.dark-mode .note-card:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Favoritos */
+body.dark-mode .note-card.favorite {
+    background: linear-gradient(135deg, #2c2c2c, #242526);
+    border: 1px solid #555;
+}
+
+/* Títulos */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #f1f1f1;
+}
+
+/* Texto */
+body.dark-mode .note-card p {
+    color: #b0b3b8;
+}
+
+body.dark-mode small {
+    color: #8a8d91;
+}
+
+/* 🔥 INPUTS (AGORA CORRIGIDO) */
+body.dark-mode input,
+body.dark-mode textarea {
+    background: #ffffff; /* branco */
+    color: #000000;      /* texto preto */
+    border: 1px solid #ccc;
+}
+
+/* Placeholder */
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #888;
+}
+
+/* Focus */
+body.dark-mode input:focus,
+body.dark-mode textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Labels */
+body.dark-mode label {
+    color: #e4e6eb;
+}
+
+/* Busca continua escura (fica melhor assim) */
+body.dark-mode .search-input {
+    background: #3a3b3c;
+    color: #e4e6eb;
+}
+
+body.dark-mode .search-input::placeholder {
+    color: #b0b3b8;
+}
+
+/* Botões */
+body.dark-mode .btn-create {
+    background-color: #16a085;
+}
+
+body.dark-mode .btn-edit {
+    background-color: #2980b9;
+}
+
+body.dark-mode .btn-delete {
+    background-color: #c0392b;
+}
+
+body.dark-mode .btn-favorite {
+    background-color: #d4ac0d;
+    color: #000;
+}
+
+/* Mensagens */
+body.dark-mode .message {
+    background: #2c3e50;
+    border-color: #34495e;
+    color: #ecf0f1;
+}
+
+/* Containers de formulário */
+body.dark-mode .note-form-container,
+body.dark-mode .login-box,
+body.dark-mode .logout-box {
+    background: #242526;
+    color: #e4e6eb;
+}
+
+/* Destaque só para Nova Nota */
+body.dark-mode .note-form-container {
+    background: #2f3133; 
+    border: 1px solid #444;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}

@@ -1,0 +1,20 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+
+<!-- Header com botão de voltar -->
+<section class="notes-header">
+    <a href="javascript:history.back()" class="btn-create btn-back">🔙 Voltar</a>
+</section>
+
+<section class="note-form-container">
+    <h2>Nova Nota</h2>
+
+    <form method="post" class="note-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-create">Salvar</button>
+    </form>
+</section>
+
+{% endblock %}

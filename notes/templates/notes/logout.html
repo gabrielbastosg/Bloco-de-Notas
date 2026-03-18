@@ -1,0 +1,9 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+<section class="login-box">
+    <h2>Logout</h2>
+    <p>Você saiu com sucesso!</p>
+    <a href="{% url 'login' %}" class="btn-create">Login novamente</a>
+</section>
+{% endblock %}

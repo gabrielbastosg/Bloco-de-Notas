@@ -1,0 +1,32 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+<div class="login-box">
+    <h2>Criar Conta</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div style="margin-bottom: 15px;">
+            <label>{{ field.label }}</label><br>
+            {{ field }}
+
+            {% if field.help_text %}
+                <small style="color: gray;">
+                    {{ field.help_text }}
+                </small>
+            {% endif %}
+
+            {% for error in field.errors %}
+                <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn-create">Cadastrar</button>
+</form>
+
+    <p>Já tem conta? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock %}
