@@ -35,7 +35,10 @@ def create_note(request):
             return redirect('lista-notas')
     else:
         form = NoteForm()
-    return render(request, 'notes/criar-notas.html', {'form': form})
+    return render(request, 'notes/criar-notas.html',{
+     'form': form,
+     'is_edit':False
+     })
 
 # Editar nota existente
 @login_required
@@ -49,7 +52,10 @@ def edit_note(request, id):
             return redirect('lista-notas')
     else:
         form = NoteForm(instance=note)
-    return render(request, 'notes/criar-notas.html', {'form': form})
+    return render(request, 'notes/criar-notas.html', {
+        'form': form,
+        'is_edit':True
+    })
 
 # Deletar nota
 @login_required
@@ -84,9 +90,12 @@ def favorite_notes(request):
     # Pega só as notas do usuário que estão marcadas como favoritas
     notes = Note.objects.filter(user=request.user, is_favorite=True).order_by('-created_at')
     
-    # Mantém a pesquisa por título se quiser
+    # Pesquisa por titulo e conteudo
     query = request.GET.get('q')
     if query:
-        notes = notes.filter(title__icontains=query)
+        notes = notes.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query)
+        )
     
     return render(request, 'notes/favoritas-notas.html', {'notes': notes})

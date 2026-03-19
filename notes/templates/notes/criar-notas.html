@@ -1,19 +1,23 @@
 {% extends "notes/base.html" %}
 
+{% block title %}Nova Nota{% endblock %}
+
 {% block content %}
 
 <!-- Header com botão de voltar -->
 <section class="notes-header">
-    <a href="javascript:history.back()" class="btn-create btn-back">🔙 Voltar</a>
+    <a href="javascript:history.back()" class="btn-back">🔙 Voltar</a>
 </section>
 
 <section class="note-form-container">
-    <h2>Nova Nota</h2>
+    <h2>{% if is_edit %}Editar Nota{% else %}Nova Nota{% endif %}</h2>
 
     <form method="post" class="note-form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn-create">Salvar</button>
+        <button type="submit" class="btn-create">
+            {% if is_edit %}Atualizar{% else %}Salvar{% endif %}
+        </button>
     </form>
 </section>
 
